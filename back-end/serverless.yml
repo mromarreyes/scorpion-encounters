@@ -1,14 +1,21 @@
 service: scorpion-encounters # NOTE: update this with your service name
 
+plugins:
+    - serverless-webpack
+
+custom:
+    webpack:
+        webpackConfig: ./webpack.config.js
+        includeModules: true 
+
 provider:
-  name: aws
-  runtime: nodejs8.10
+    name: aws
+    runtime: nodejs8.10
 
 functions:
-  getScorpion: # AWS Lambda function
-    handler: handler.scorpion # Run scorpion function from handler.js
-    events: # The Events that trigger this Function
-      - http:
-          path: scorpion
-          method: get
-
+    getScorpion: # AWS Lambda function
+        handler: handler.scorpion # Run scorpion function from handler.js
+        events: # The Events that trigger this Function
+            - http:
+                path: scorpion
+                method: get

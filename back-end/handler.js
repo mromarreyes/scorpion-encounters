@@ -1,10 +1,17 @@
 'use strict';
 
-module.exports.scorpion = async (event, context) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Encountered a scorpion!'
-    }),
-  };
+const createResponse = (statusCode, message) => {
+    return {
+        statusCode: statusCode,
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(message)
+    };
+};
+
+export const scorpion = async (event, context) => {
+    return createResponse(200, {
+        message: 'Encountered a scorpion!'
+    });
 };
